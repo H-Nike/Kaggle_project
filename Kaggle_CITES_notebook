@@ -55,3 +55,16 @@ ax.set_xlabel('Countries',fontsize=13,color='black')
 plt.legend(loc=(1.05,0.85),fontsize=13)
 sns.despine(left=True)
 plt.show()
+What are the Species (Genus) that are imported the most?
+ax = df_th['Genus'].value_counts().sort_values(ascending=False).head(10).plot(kind='barh',figsize = (15,5),
+                                                                           color = 'slategray')
+#Remove all the line around the graph
+ax.tick_params(length=3, width=1, colors='black',labelsize='large')
+x_axis = ax.axes.get_xaxis().set_visible(False)
+for i in ax.patches:
+    ax.text(i.get_width()+1,i.get_y()+0.4,
+           str(round((i.get_width()),2)),fontsize=12, color='black')
+ax.set_title('Top 10 Imported Trophy Hunting Species',fontsize=14, color='black')
+# Invert for largest on top
+ax.invert_yaxis() 
+sns.despine(bottom=True)
