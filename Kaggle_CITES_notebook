@@ -1,0 +1,20 @@
+import numpy as np # linear algebra
+import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+sns.set_style('ticks')
+import warnings
+warnings.filterwarnings('ignore')
+
+# Importing the dataset
+df = pd.read_csv('comptab_2018-01-29 16_00_comma_separated.csv')
+
+null_per_col = df.isnull().sum() 
+row_total = df.shape[0]
+round((null_per_col/row_total)*100,2)
+
+# I will drop all columns that have more than 10% of null values.
+df.drop(['Unit','Importer reported quantity','Exporter reported quantity','Origin','Class'],axis=1,inplace=True)
+Trophy Hunters
+df_th = df[df['Purpose'] == 'H']
